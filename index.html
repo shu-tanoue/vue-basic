@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+      .blue {
+        color: blue;
+      }
+    </style>
+    <div id="app">
+      {{number}}
+      <button v-on:click="countUp">カウントアップ</button>
+      <div v-if="number">条件次第で表示</div>
+      <ul>
+        <li v-for="item in items">{{item}}</li>
+      </ul>
+      <div v-bind:class="color">カラー</div>
+      <input type="text" v-model="color" />
+      {{custom_color}}
+    </div>
+    <script>
+      //この範囲でしか表示されないようになってる
+      //最後の行でitemsをdataに当てはめる
+      new Vue({
+        el: "#app", //エレメント＝el
+        data: {
+          number: 0,
+          items: [1, 2, 3],
+          color: "",
+        },
+        methods: {
+          countUp: function () {
+            this.number = this.number + 1;
+          },
+        },
+        computed: {
+          //custom_colorを31から持ってくる。↓
+          custom_color: function () {
+            return this.color.toUpperCase(); //大文字で書くことができる
+          },
+        },
+      }); //これらで表示を行うことができる１１−１９
+    </script>
+  </body>
+</html>
